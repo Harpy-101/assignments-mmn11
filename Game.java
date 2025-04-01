@@ -45,6 +45,7 @@ public class Game {
      */
     public void handleTurn() {
         if (player1.getDeck().size() == 0 || player2.getDeck().isEmpty()) {
+            gameStatus = player1.getDeck().size() == 0 ? player2.getName() + "won the war!" : player1.getName() + "won the war!";
             return;
         }
 
@@ -83,6 +84,7 @@ public class Game {
     private void handleWar() {
         if (player1.getDeck().size() < 4 || player2.getDeck().size() < 4) {
             gameStatus = player1.getDeck().size() < 4 ? player2.getName() + "won the war!" : player1.getName() + "won the war!";
+            return;
         }
         else {
             for (int i = 0; i < 2; i++) {
