@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DrawMatController">
+   <children>
+      <Canvas fx:id="canvas" height="200.0" width="200.0" />
+      <Button mnemonicParsing="false" onAction="#drawBtnPressed" text="Button">
+         <VBox.margin>
+            <Insets left="74.0" />
+         </VBox.margin>
+      </Button>
+   </children>
+</VBox>
