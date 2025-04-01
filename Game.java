@@ -40,8 +40,11 @@ public class Game {
         return player2CurrCard;
     }
 
+    /**
+     * This function handles each turn based on the three potential outcomes; player 1 won, player 2 won, war. 
+     */
     public void handleTurn() {
-            if (player1.getDeck().size() == 0 || player2.getDeck().isEmpty()) {
+        if (player1.getDeck().size() == 0 || player2.getDeck().isEmpty()) {
             return;
         }
 
@@ -66,11 +69,17 @@ public class Game {
         }
     }
 
+    /**
+     * This function determines the numerical value of a given card
+     */
     private int calcRank(Card card) {
         String ranks = "2345678910JQKA";
         return ranks.indexOf(card.getRank());
     }
 
+    /**
+     * This function handles the case where the players are at war. It draws 2 cards from each player and adds them into a war pile. It then draws another card from each and compares them. If any of the players won, he gets the pile and the extra two cards that were drawn and compared. But, if there is another war, the last 2 cards a re-inserted to the start of their respective decks to be re-drawn by the next button press (which will trigger another war, re-calling the function until we get a winner). 
+     */
     private void handleWar() {
         if (player1.getDeck().size() < 4 || player2.getDeck().size() < 4) {
             gameStatus = player1.getDeck().size() < 4 ? player2.getName() + "won the war!" : player1.getName() + "won the war!";

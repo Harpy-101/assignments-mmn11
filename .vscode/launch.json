@@ -2,12 +2,19 @@
     "configurations": [
         {
             "type": "java",
+            "name": "DrawMat",
+            "request": "launch",
+            "mainClass": "DrawMat",
+            "projectName": "assignments_d318b1c7",
+            "vmArgs": "--module-path \"C:/Users/User/javafx-sdk-21.0.6/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
             "name": "WarGame",
             "request": "launch",
             "mainClass": "WarGame",
             "projectName": "assignments_d318b1c7",
             "vmArgs": "--module-path \"C:/Users/User/javafx-sdk-21.0.6/lib\" --add-modules javafx.controls,javafx.fxml"
-
         }
     ]
 }

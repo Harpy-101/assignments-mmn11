@@ -1,3 +1,6 @@
+/**
+ * This is the controller for WarGame. It facilitates the UI for the game 
+ */
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -35,6 +38,11 @@ public class WarGameController {
         displayRemainingPile(canvas2, game.getPlayer2());
     }
 
+    /**
+     * This function displays the remaining cards each user have along with who won the round. 
+     * @param canvas the canvas to draw on 
+     * @param p the player
+     */
     private void displayRemainingPile(Canvas canvas, Player p) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -44,7 +52,12 @@ public class WarGameController {
         gc.fillText(p.getName() + " remaining cards: " + p.getDeck().size(), canvas.getWidth()-10, 50);
         gc.fillText("GameStatus: " + game.getGameStatus(), canvas.getWidth()-10, 100);
     }
-
+    
+    /**
+     * This function draws the actual card 
+     * @param canvas the canvas to draw on
+     * @param drawnCard the card being drawn
+     */
     private void drawCard(Canvas canvas, Card drawnCard) {        
         if (drawnCard != null) {
             GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -59,20 +72,19 @@ public class WarGameController {
 
             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             
-            // Draw card outline
+            // Draw the card outline
             gc.setFill(Color.WHITE);
             gc.fillRoundRect(10, 10, 180, 280, 15, 15);
             gc.setStroke(color);
             gc.strokeRoundRect(10, 10, 180, 280, 20, 20);
 
-            // Draw card rank
+            // Draw the card rank and suit from top left to bottom right. 
             gc.setFill(color);
             gc.setFont(new Font(45));
             gc.setTextAlign(TextAlignment.LEFT);
             gc.fillText(drawnCard.getRank(), topLeftX, topLeftY);
             gc.fillText(drawnCard.getSuit(), calcSuitPosition(drawnCard, topLeftX), topLeftY + lineSpacing);
-            // gc.fillText(drawnCard.getRank(), 70, 100);
-            // gc.fillText(drawnCard.getSuit(), 70, 150);
+      
             gc.setTextAlign(TextAlignment.CENTER);
             gc.fillText(drawnCard.getRank(), centerX, centerY - lineSpacing / 2);
             gc.fillText(drawnCard.getSuit(), calcSuitPosition(drawnCard, centerX), centerY + lineSpacing / 2);
@@ -83,6 +95,13 @@ public class WarGameController {
         }
     }
 
+    /**
+     * This function handles the case for when the rank = 10. When that happens, we need to shift the suit's position to the right to make it appear in the middle
+     * CSS would have made it so much simpler...
+     * @param drawnCard
+     * @param x
+     * @return
+     */
     private double calcSuitPosition(Card drawnCard, double x) {
         String currRank = drawnCard.getRank();
         return currRank.equals("10") ? x + 5 : x;
